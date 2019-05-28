@@ -1,0 +1,61 @@
+<section id="tafmulher">
+    <form name="formCadastroTaf" id="formCadastroTaf" action="#">
+        <fieldset id="formFieldSetGeral">
+            <legend>Preencha os dados: </legend>
+            <fieldset>
+                <label for="nomeInputText">Preencha o nome OU matrícula do Policial Militar: </label><br>
+                <input type="text" size="40" maxlength="50" name="nomeInputText" id="nomeInputText" />
+
+                <p> <label for="idadeInputText">Idade:</label>
+                    <input type="number" min="18" max="58" name="idadeInputText" id="idadeInputText" />
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Sexo</legend>
+                <input type="radio" name="sexoRadioButton" id="mascRadioButton" value="masculino" /> <label
+                    for="mascRadioButton">Masculino</label>
+                <input type="radio" name="sexoRadioButton" id="femRadioButton" value="feminino" /> <label
+                    for="femRadioButton">Feminino</label>
+            </fieldset>
+            <fieldset id="dadosFieldset">
+                <table id="dadosTable">
+                    <tr>
+                        <td>Número de repetições de abdominais: </td>
+                        <td><input type="number"></td>
+                        <td>Pontuação: <input class="readonly" type="text" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Metragem na corrida: </td>
+                        <td><input type="number" min="1000" max="3200"></td>
+                        <td>Pontuação: <input class="readonly" type="text" readonly></td>
+                    </tr>
+                    <tr id="rowDosConjugados">
+                        <td>Número de repetições de conjugados: </td>
+                        <td><input type="number"></td>
+                        <td>Pontuação: <input class="readonly" type="text" readonly></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <h1>Pontuação total:</h1>
+                        </td>
+                        <td>
+                            <script>document.write(total());</script>
+                        </td>
+                        <td>APTO ou INAPTO</td>
+                        <td><input type="submit" value="Cadastrar valores"></td>
+                    </tr>
+                </table>
+
+
+
+
+            </fieldset>
+
+
+
+        </fieldset>
+    </form>
+
+</section>

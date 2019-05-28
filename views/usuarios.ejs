@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/estilo.css" />
+  <title>Login - TAF PMMS</title>
+</head>
+
+<body>
+  <% include ./partials/cabecalho %>
+  <img src="images/BrasaoPMMS.jpg" id="brasao-pm-img" />
+  <h1>Planilha TAF PMMS</h1>
+
+  <section>
+    <h1>Cadastro de um novo usuario para o sistema Planilha TAF PMMS</h1>
+    <form method="POST">
+      <br />
+      <label for="matriculaInput">Matricula: </label>
+      <input type="number" name="matriculaInput" id="matriculaInput"
+        value="<%= (typeof matriculaInput != 'undefined')? matriculaInput : '' %>" />
+      <br />
+      <label for="postogradInput"> Posto ou graduação: </label>
+      <input type="text" name="postogradInput" id="postogradInput"
+        value="<%= (typeof postogradInput != 'undefined')? postogradInput : '' %>" />
+      <br />
+      <label for="nomecompletoInput">Nome completo:</label>
+      <input type="text" name="nomecompletoInput" id="nomecompletoInput"
+        value="<%= (typeof nomecompletoInput != 'undefined')? nomecompletoInput : '' %>" />
+      <br />
+      <label for="nomedeguerraInput">Nome de guerra:</label>
+      <input type="text" name="nomedeguerraInput" id="nomedeguerraInput"
+        value="<%= (typeof nomedeguerraInput != 'undefined')? nomedeguerraInput : '' %>" />
+      <br />
+      <label for="unidadeInput">Unidade:</label>
+      <input type="text" name="unidadeInput" id="unidadeInput"
+        value="<%= (typeof unidadeInput != 'undefined')? unidadeInput : '' %>" />
+      <br />
+      <label for="senhaInput">Digite uma senha:</label>
+      <input type="password" name="senhaInput" id="senhaInput" />
+      <br />
+      <label for="confirmeSenhaInput">Confirme sua senha:</label>
+      <input type="password" name="confirmeSenhaInput" id="confirmeSenhaInput" />
+      <br />
+      <label for="perfilList">Escolha um perfil de acesso ao lado:</label>
+      <select name="perfilList" id="perfilList">
+        <option value="master">Master</option>
+        <option value="gerenciador">Gerenciador</option>
+        <option value="leitura">Somente Leitura</option>
+      </select>
+      <br />
+      <input type="submit" value="Cadastrar" name="cadastrarButton" id="cadastrarButton" />
+    </form>
+    <% if(typeof errors != 'undefined') { %> <% errors.forEach(function(error)
+      { %>
+    <h1><%= error.msg %></h1>
+    <% }); %> <% } %>
+  </section>
+</body>
+
+</html>

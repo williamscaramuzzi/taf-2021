@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/estilo.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
+  <title>Login - TAF PMMS</title>
+  <script src="/javascripts/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+  <div id="login-div">
+    <img src="images/BrasaoPMMS.jpg" id="brasao-pm-img" />
+    <h1>Planilha TAF PMMS</h1>
+
+    <form id="formLogin" method="POST">
+      <table id="quadro-login-table">
+        <tr>
+          <td>Matrícula:</td>
+          <td>
+            <input type="number" class="text-input" name="matricula" id="matricula" />
+          </td>
+        </tr>
+        <tr>
+          <td>Senha:</td>
+          <td>
+            <input type="password" class="text-input" name="senha" id="senha" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Entrar" name="botaoEntrar" id="botaoEntrar" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <span id="esqueci-minha-senha-span">Esqueci minha senha</span>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div id="containermsg">
+      <% if(error != '' || success_msg!='' || error_msg!=''){ %>   
+        <!--o passport só trabalha com mensagem tipo error, não trabalha com as mensagens do connect-flash-->
+        <!--o connect flash usa success_msg e error_msg, e é bom usar ele quando passamos de uma página para outra com res.redirect-->
+      <div id="divmensagens" class="divvisivel">
+        <%= error %> <%= success_msg %> <%= error_msg %>
+        <script>
+        setTimeout(function(){
+          $('div.divvisivel').fadeOut(3000);
+        }, 3000)
+         </script>
+        <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <script>
+    function fecharDiv() { 
+     document.getElementById('divmensagens').setAttribute('class', 'close'); 
+     document.getElementById('botaomensagens').setAttribute('class', 'close'); 
+    }     
+      
+  </script>
+
+
+
+</html>

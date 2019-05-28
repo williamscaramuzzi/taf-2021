@@ -1,0 +1,215 @@
+@charset "UTF-8";
+body {
+  background-color: #336699;
+}
+
+h1 {
+  margin-top: 2%;
+  font-size: 24pt;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+div#login-div {
+  color: black;
+  background-color:white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16pt;
+  /*border: 1px solid #034485;*/
+  border-radius: 40px;
+  box-shadow: -30px 30px 30px black;
+  display: block;
+  float: left;
+  position: absolute;
+  width: 500px;
+  height: 500px;;
+  text-align: center;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+div#login-div input.text-input{
+  font-size: 16pt;
+}
+img#brasao-pm-img {
+  height: 128px;
+  width: 111px;
+  margin-top: 5%;
+}
+
+table#quadro-login-table {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto; /*centraliza o quadro-login-table dentro do div*/
+}
+
+input.text-input {
+  vertical-align: top;
+  width: 200px;
+  box-shadow: 1px 1px 1px black;
+}
+span#esqueci-minha-senha-span {
+  font-size: 12pt;
+}
+input#botaoEntrar {
+  vertical-align: top;
+}
+
+header#cabecalho {
+  color: black;
+  background-color: #104f55;
+  box-shadow: 1px 1px 2px black;
+  margin: -8px -8px auto -10px;
+  height: 100px;
+}
+nav {
+  /*border: 1px dashed red;*/
+  margin-left: 20px;
+  height: fit-content;
+  padding: 0px;
+  width: fit-content;
+  padding: 5px;
+}
+
+ul#menuList {
+  list-style: none;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 8pt;
+  color: white;
+  padding: 5px;
+  /*border: 1px dashed black; */
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+ul#menuList li {
+  background-color: #034485;
+  display: inline-block;
+  padding: 10px;
+  box-shadow: 1px 1px 1px black;
+  transition: background-color 300ms;
+}
+
+ul#menuList li:hover {
+  background-color: #70b3f7;
+  color: black;
+}
+
+form#formCadastroTaf {
+  background-color: #e4f1ff;
+  margin: auto;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+input.readonly {
+  background-color: #cecece;
+}
+input#nomeInputText {
+  margin-right: 30px;
+}
+
+table#quadro-login-table {
+  border: 1px dashed red;
+}
+table#quadro-login-table td, table#quadro-login-table th {
+  border: 1px dashed white;
+}
+#containermsg{
+  border: 1px dashed green;
+  height: fit-content;
+  padding: 10px;
+}
+.divvisivel {
+  display: block;
+  position: absolute;
+  background-color: rgba(202, 75, 43, 0.6);
+  border-radius: 10px;
+  width: fit-content;
+  color: white;
+  padding: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+  overflow: hidden;
+  margin: 50px auto auto 300px;
+}
+.botaovisivel{
+  background-color: rgba(17, 21, 77, 0.4);
+  border: 1px solid  rgba(17, 21, 77, 0.4);
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+}
+.close{
+  display: none;
+}
+#botaoEntrar {
+  background-color:  rgb(29, 30, 94);
+  color: white;
+  border-color: rgb(29, 30, 94);
+  border-radius: 10px;
+  width: 90px;
+  height: 30px;
+  transition: all 400ms;
+}
+
+#botaoEntrar:hover{
+  background-color:  #336699;
+  width: 100px;
+}
+#botaoEntrar:active{
+  background-color:  #104b2f;
+}
+
+.divhidden{
+  border: 1px dashed red;
+  display: none;
+  
+}
+#divdotaf, #divdosdados{
+  margin: auto;
+  width: auto;
+  padding: 10px;
+  background-color: #e4f1ff;
+}
+#divpesquisa{
+  margin-top: 10px;
+  width: 800px;
+  padding: 10px;
+  background-color: #e4f1ff;
+}
+table#tableResultadoPesquisa{
+  background-color: #cecece;
+  width: 790px;
+}
+
+table#tableResultadoPesquisa tr:nth-child(odd) {
+  /*linhas ímpares da tabela*/
+  background-color: #797979;
+}
+
+table#tableResultadoPesquisa th{
+  background-color: #003870;
+  color: white;
+}
+
+table#dadosTable{
+  padding: 10px;
+  border: 1px solid red;
+}
+table#dadosTable td{
+  height: 45px;
+}
+table#dadosTable tr:nth-child(odd) {
+  /*linhas ímpares da tabela*/
+  background-color: #9cbbfd;
+}
+table#dadosTable tr:nth-child(even) {
+  /*linhas ímpares da tabela*/
+  background-color: #cadcff;
+}
+
