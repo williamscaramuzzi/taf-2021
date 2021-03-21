@@ -1,11 +1,23 @@
 <header id="cabecalho">
         <nav>
             <ul id="menuList">
-                <li><a href="/home">Cadastrar TAF</a></li>
+                <li class="primeiro">
+                    <a href="#">Cadastrar</a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/home">Cadastrar TAF</a></li> <br>
+                            <li><a href="/usuarios">Cadastrar novo usuário</a></li> <br>
+                            <li><a href="/policiais">Cadastro de Policiais</a></li>
+                    </ul>
+                </li>
                 <li><a href="/home">Ver tabela geral</a></li>
-                <li><a href="/usuarios">Cadastrar novo usuário</a></li>
-                <li><a href="/policiais">Cadastro de Policiais</a></li>
                 <li><a href="/home/logout">Logout</a></li>
             </ul>
         </nav>
+        
+        <div id="userdata">
+            Usuário: <%= cabecalho.nome %> <br>
+            Unidade: <%= cabecalho.unidade %> <br>
+            Perfil: <%= cabecalho.perfil %>
+        </div>
     </header>
+    

@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("tafdb", "root", "Ar0j4dkq", {
+const sequelize = new Sequelize("tafdb", "root", "admin", {
   dialect: "mysql"
 });
 class Policial extends Sequelize.Model {}

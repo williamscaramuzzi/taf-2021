@@ -13,6 +13,7 @@
 <body>
 
     <% include ./partials/cabecalho %>
+    
 
     <div id="divpesquisa" class="divpesquisa">
         <section id="corpo">
@@ -33,100 +34,112 @@
                 <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
             </div>
             <% } %>
-            <% if(typeof rows!='undefined') { %>
-            <div id="resultadoPesquisa" class="">
-                <table id="tableResultadoPesquisa">
-                    <tr>
-                        <th>Matrícula</th>
-                        <th>Posto/Graduação</th>
-                        <th>Nome de guerra</th>
-                        <th>Nome completo</th>
-                        <th>Unidade</th>
-                    </tr>
-                    <% for(var policial of rows){ %>
-                    <tr>
-                        <td><%=policial.matricula%></td>
-                        <td><%=policial.postograd%></td>
-                        <td><%=policial.nomedeguerra%></td>
-                        <td><%=policial.nomecompleto%></td>
-                        <td><%=policial.unidade%></td>
-                        <td><input type="button" value="&#10004;"></td>
-                    </tr>
-                    <% } %>
-                </table>
-            </div>
+            <% if(typeof dados!='undefined') { %>
+                <div id="resultadoPesquisa" class="">
+                    <table id="tableResultadoPesquisa">
+                        <tr>
+                            <th>Selecionar</th>
+                            <th>Matrícula</th>
+                            <th>Posto/Graduação</th>
+                            <th>Nome de guerra</th>
+                            <th>Nome completo</th>
+                            <th>Unidade</th>
+                        </tr>
+                        <% for(var policial of dados){ %>
+                        <tr>
+                            <td id="tdbutton"><input type="button" value="&#10004;" id="selecionarButton"></td>
+                            <td><%=policial.matricula%></td>
+                            <td><%=policial.postograd%></td>
+                            <td><%=policial.nomedeguerra%></td>
+                            <td><%=policial.nomecompleto%></td>
+                            <td><%=policial.unidade%></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
             <% } %>
 
 
             <div id="divdotaf" class="divhidden">
-                <form name="formCadastroTaf" id="formCadastroTaf" method="POST">
+                <form name="formCadastroTaf" id="formCadastroTaf" method="POST" action="/">
                     <div id="divdosdados" class="divhidden">
                         Nome: <span name="nomespan" id="nomespan"></span> <br />
                         Matrícula: <span name="matriculaspan" id="matriculaspan"></span> <br />
+                        Unidade: <span id="unidadespan"></span> <br>
                         Idade: <span name="idadespan" id="idadespan"></span> <br />
                         Sexo: <span name="sexospan" id="sexospan"></span><br />
+                        Ano: <span id="anospan"></span> <br />
+                        <script>document.getElementById("anospan").innerText = new Date().getFullYear().toString();</script>
+                        Semestre: <select name="semestre" id="semestre">
+                            <option id="1sem" value="1ºsemestre">1º Semestre</option>
+                            <option id="2sem" value="2ºsemestre">2º Semestre</option>
+                        </select>
                     </div>
                     <table id="dadosTable">
                         <tr>
                             <td>Metragem na corrida: </td>
-                            <td><input type="number" min="700" max="2800" step="50" style="width: 100px;" name="qtdCorrida" id="qtdCorrida"
-                                    onblur="chamaCorrida();" onchange="chamaCorrida();"></td>
+                            <td><input type="number" min="700" max="3400" step="50" style="width: 100px;"
+                                    name="qtdCorrida" id="qtdCorrida" onblur="chamaCorrida();"
+                                    onchange="chamaCorrida();"></td>
                             <td>Pontuação: <input id="pontCorridaInput" name="pontCorridaInput" class="readonly"
                                     type="text" tabindex="-1" readonly></td>
                         </tr>
                         <tr class="abdominais">
                             <td> Abdominais: <br>
                                 <input type="radio" name="opcaoAbdominalRadio" id="opcaoAbdominalCarl" value="carlup"
-                                            checked> <label for="opcaoAbdominalCarl">Carl-up</label>
-                                        <input type="radio" name="opcaoAbdominalRadio" id="opcaoAbdominalRem" value="remador">
-                                        <label for="opcaoAbdominalRem">Remador</label></td>
-                            <td><input type="number" id="qtdAbs" name="qtdAbs" max="49" min="1" onblur="chamaAbdominais();"
-                                    onchange="chamaAbdominais();" style="width: 100px;"></td>
-                            <td>Pontuação: <input name="pontAbInput" id="pontAbInput" class="readonly" type="text" tabindex="-1"
-                                    readonly></td>
+                                    checked> <label for="opcaoAbdominalCarl">Carl-up</label>
+                                <input type="radio" name="opcaoAbdominalRadio" id="opcaoAbdominalRem" value="remador">
+                                <label for="opcaoAbdominalRem">Remador</label></td>
+                            <td><input type="number" id="qtdAbs" name="qtdAbs" max="49" min="1"
+                                    onblur="chamaAbdominais();" onchange="chamaAbdominais();" style="width: 100px;">
+                            </td>
+                            <td>Pontuação: <input name="pontAbInput" id="pontAbInput" class="readonly" type="text"
+                                    tabindex="-1" readonly></td>
                         </tr>
                         <tr id="rowDasBarras">
                             <td>Número de repetições na barra: </td>
-                            <td><input type="number" name="barraInputText" id="barraInputText" min="1" max="12" onblur="chamaBarra();"
-                                    onchange="chamaBarra();" style="width: 100px;"></td>
-                            <td>Pontuação: <input name="pontBarraInput" id="pontBarraInput" class="readonly" type="text" tabindex="-1"
-                                    readonly></td>
+                            <td><input type="number" name="barraInputText" id="barraInputText" min="1"
+                                    onblur="chamaBarra();" onchange="chamaBarra();" style="width: 100px;"></td>
+                            <td>Pontuação: <input name="pontBarraInput" id="pontBarraInput" class="readonly" type="text"
+                                    tabindex="-1" readonly></td>
                         </tr>
                         <tr id="rowDasFlexoesFem">
                             <td>Número de flexões: </td>
-                            <td><input type="number" id="flexaoFemInputText" name="flexaoFemInputText" min="1" max="24" onblur="chamaFlexao();"
-                                    onchange="chamaFlexao();" style="width: 100px;"></td>
-                            <td>Pontuação: <input name="pontFlexaoFemInput" id="pontFlexaoFemInput" class="readonly" type="text" tabindex="-1"
-                                    readonly></td>
+                            <td><input type="number" id="flexaoFemInputText" name="flexaoFemInputText" min="1"
+                                    onblur="chamaFlexao();" onchange="chamaFlexao();" style="width: 100px;"></td>
+                            <td>Pontuação: <input name="pontFlexaoFemInput" id="pontFlexaoFemInput" class="readonly"
+                                    type="text" tabindex="-1" readonly></td>
                         </tr>
                         <tr id="rowDasOpcoes">
                             <td><input type="radio" name="opcaoRadio" id="barraRadioButton" value="Barra" /> <label
                                     for="barraRadioButton">Barras</label>
-                                    <input type="radio" name="opcaoRadio" id="flexaoRadioButton" checked value="Flexão" /> <label
-                                    for="flexaoRadioButton">Flexões</label></td>
+                                <input type="radio" name="opcaoRadio" id="flexaoRadioButton" checked value="Flexão" />
+                                <label for="flexaoRadioButton">Flexões</label></td>
                             <td class="tdbarra" hidden>Qtd: <br>
-                            <input type="number" id="qtdBarrasOpcao" min="1" max="12" name="qtdBarrasOpcao"
-                                    onblur="chamaBarraDosVeio();" onchange="chamaBarraDosVeio();" style="width: 100px;"></td>
+                                <input type="number" id="qtdBarrasOpcao" min="1" max="12" name="qtdBarrasOpcao"
+                                    onblur="chamaBarraDosVeio();" onchange="chamaBarraDosVeio();" style="width: 100px;">
+                            </td>
                             <td class="tdbarra" hidden>Pontuação: <input class="readonly" type="text" tabindex="-1"
                                     readonly name="pontBarraDosVeioInput" id="pontBarraDosVeioInput"></td>
                             <td class="tdflexao">Qtd: <br>
-                                <input type="number" id="qtdFlexaoOpcao" min="1" max="28" name="qtdFlexaoOpcao"
+                                <input type="number" id="qtdFlexaoOpcao" min="1" name="qtdFlexaoOpcao"
                                     onblur="chamaFlexao();" onchange="chamaFlexao();" style="width: 100px;"></td>
-                            <td class="tdflexao">Pontuação: <input id="pontFlexaoMascInput" name="pontFlexaoMascInput" class="readonly"
-                                    type="text" tabindex="-1" readonly></td>
+                            <td class="tdflexao">Pontuação: <input id="pontFlexaoMascInput" name="pontFlexaoMascInput"
+                                    class="readonly" type="text" tabindex="-1" readonly></td>
                         </tr>
                         <tr>
                             <td>
                                 <h1>Pontuação total:</h1>
                             </td>
                             <td>
-                                total aqui
+                                <span id="totalspan"></span>
                             </td>
-                            <td>APTO ou INAPTO</td>
-                            <td><input type="submit" onclick="total();" value="Cadastrar valores"></td>
+                            <td><span id="parecerspan" class=""></span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Cadastrar valores"></td>
                         </tr>
                     </table>
-                    <input type="text" name="matriculaHiddenInput" id="matriculaHiddenInput" hidden readonly>
                 </form>
             </div>
         </section>
@@ -139,9 +152,53 @@
     function fecharDiv() {
         document.getElementById('divmensagens').setAttribute('class', 'close');
         document.getElementById('botaomensagens').setAttribute('class', 'close');
-    }     
+    }
+    document.getElementById("formCadastroTaf").onsubmit = function (e) {
+        // parando o jeito normal de submitar o form
+        e.preventDefault();
+        //validando
+        var allTextNotHidden = $(":input").not(":hidden");
+        var allTextInputReadonly = allTextNotHidden.filter(":input[type=text][readonly='readonly']");
+        var fator1, fator2, fator3, media;
+        fator1 = parseFloat(allTextInputReadonly[0].value);
+        fator2 = parseFloat(allTextInputReadonly[1].value);
+        fator3 = parseFloat(allTextInputReadonly[2].value);
+        media = (fator1 + fator2 + fator3) / 3;
+        if (Number.isNaN(media)) {
+            alert("Preencha todos os campos");
+            return null;
+        }
 
+        // coletar dados do form direto pro json
+        var formData = $("#formCadastroTaf").serializeArray();
+        var objeto = {};
+        for (var obj of formData) {
+            if(obj.name){
+                objeto[obj.name] = obj.value;
+            }
+        }
+        //adicionando os demais itens de fora do form, que eu preciso
+        objeto.matricula = document.getElementById("matriculaspan").innerText;
+        objeto.ano = document.getElementById("anospan").innerText;
+        objeto.total = document.getElementById("totalspan").innerText;
+        objeto.parecer = document.getElementById("parecerspan").innerText;
+        objeto.unidade = document.getElementById("unidadespan").innerText;
+        objeto.idade = document.getElementById("idadespan").innerText;
+        objeto.sexo = document.getElementById("sexospan").innerText;
+        console.log(objeto);
+        // construct an HTTP request
+        $.ajax({
+            url: "/home",
+            type: "post",
+            data: objeto,
+        }).done(function(obj){
+            alert(obj.mensagem);
+            window.location.href = "/home";
+        }).fail(function(failcallback){
+            alert("falhou aqui");
+        });
     
+    }
 </script>
 
 </html>

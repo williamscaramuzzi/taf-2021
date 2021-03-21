@@ -40,22 +40,22 @@
         </tr>
       </table>
     </form>
-    <div id="containermsg">
+    
       <% if(error != '' || success_msg!='' || error_msg!=''){ %>   
         <!--o passport só trabalha com mensagem tipo error, não trabalha com as mensagens do connect-flash-->
         <!--o connect flash usa success_msg e error_msg, e é bom usar ele quando passamos de uma página para outra com res.redirect-->
       <div id="divmensagens" class="divvisivel">
-        <%= error %> <%= success_msg %> <%= error_msg %>
+          <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>   
+        <%= error %> <%= success_msg %> <%= error_msg %> 
         <script>
         setTimeout(function(){
           $('div.divvisivel').fadeOut(3000);
         }, 3000)
-         </script>
-        <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
+         </script>        
       </div>
       <% } %>
     </div>
-  </div>
+  
   <script>
     function fecharDiv() { 
      document.getElementById('divmensagens').setAttribute('class', 'close'); 

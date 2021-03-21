@@ -2,9 +2,19 @@ var express = require("express");
 var router = express.Router();
 var Policial =  require("../models/Policial");
 const { ensureAuthenticated } = require("../config/auth");
+var Usuario = require("../models/Usuario");
 
 router.get("/", ensureAuthenticated, function (req, res, next) {
-  res.render('policiais');
+  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário =>{
+    var estrutura = {
+      cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
+      unidade: um_usuário.unidade,
+      perfil: um_usuário.perfil},
+      mensagem: {},
+      dados: undefined
+  };
+    res.render('policiais', estrutura);
+  });
 });
 
 //logout handle
@@ -17,6 +27,7 @@ router.get("/logout", (req, res) => {
 
 //programação para quando submitar o cadastro de um novo policial
 router.post("/", ensureAuthenticated, function(req, res, next){
+  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário =>{
    //se eu fizer const {} = req.body, eu recebo todos os parametros do body de maneira mais facil
    const {
     matriculaInput,
@@ -29,7 +40,14 @@ router.post("/", ensureAuthenticated, function(req, res, next){
   } = req.body;
   //vetor de erros #boaspráticas
   var errors = [];
-
+  var estrutura = {
+    cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
+    unidade: um_usuário.unidade,
+    perfil: um_usuário.perfil},
+    mensagem: {},
+    dados: undefined
+};
+  
   //começando a validação
   if (matriculaInput.length < 7) {
     errors.push({ msg: "A matrícula deve ter pelo menos 7 dígitos" });
@@ -53,7 +71,7 @@ router.post("/", ensureAuthenticated, function(req, res, next){
     //então eu mando o vetor pra serem mostradas as mensagens
     //é conveniente mandar tambem os dados digitados, porque o res.render recarregará a página com as mensagens
     //e o formulário ficará em branco tudo de novo
-    res.render("policiais", {
+    estrutura.dados = {
       errors,
       matriculaInput,
       postogradInput,
@@ -61,7 +79,8 @@ router.post("/", ensureAuthenticated, function(req, res, next){
       nomedeguerraInput,
       dataNascInput,
       unidadeInput
-    });
+    }
+    res.render("policiais", estrutura);
     //nao preciso passar as senhas nem o perfil, porque pra mim é interessante deixá-los em branco pro usuario digitar de novo
   } else {
     Policial.sync();
@@ -82,6 +101,7 @@ router.post("/", ensureAuthenticated, function(req, res, next){
               res.redirect("/policiais");
             });
   }
+});
 });
 
 

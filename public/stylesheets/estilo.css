@@ -59,7 +59,7 @@ input#botaoEntrar {
 
 header#cabecalho {
   color: black;
-  background-color: #104f55;
+  background-color: #37476A;
   box-shadow: 1px 1px 2px black;
   margin: -8px -8px auto -10px;
   height: 100px;
@@ -71,9 +71,24 @@ nav {
   padding: 0px;
   width: fit-content;
   padding: 5px;
+  float: left;
+}
+div#userdata {
+  color: white;
+  width: 400px;
+  text-align: right;
+  margin-top: 10px;
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 10pt;
 }
 
 ul#menuList {
+  padding: 10px;
+  width: 500px;
+  display: flex;
+  position: absolute;
   list-style: none;
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
@@ -81,22 +96,37 @@ ul#menuList {
   font-size: 8pt;
   color: white;
   padding: 5px;
-  /*border: 1px dashed black; */
   margin-top: 30px;
   margin-bottom: 0px;
 }
-
-ul#menuList li {
-  background-color: #034485;
-  display: inline-block;
+li{
+  display: block;  
   padding: 10px;
+  background-color: #034485;
   box-shadow: 1px 1px 1px black;
-  transition: background-color 300ms;
+  margin: 3px;
+  position: relative;
 }
-
-ul#menuList li:hover {
-  background-color: #70b3f7;
-  color: black;
+li.primeiro{
+  width: 150px;
+  text-align: center;
+}
+ul.dropdown-menu{
+  margin-top: 10px;
+  display: none;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  position: absolute;
+  list-style: none;
+  padding: 0px;
+  background-color: #034485;
+  box-shadow: 2px 2px 5px black;
+}
+ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
 }
 
 form#formCadastroTaf {
@@ -113,23 +143,15 @@ input#nomeInputText {
   margin-right: 30px;
 }
 
-table#quadro-login-table {
-  border: 1px dashed red;
-}
 table#quadro-login-table td, table#quadro-login-table th {
   border: 1px dashed white;
 }
-#containermsg{
-  border: 1px dashed green;
-  height: fit-content;
-  padding: 10px;
-}
+
 .divvisivel {
   display: block;
-  position: absolute;
   background-color: rgba(202, 75, 43, 0.6);
   border-radius: 10px;
-  width: fit-content;
+  width: 300px;
   color: white;
   padding: 15px;
   font-family: 'Open Sans', sans-serif;
@@ -138,6 +160,7 @@ table#quadro-login-table td, table#quadro-login-table th {
   margin: 50px auto auto 300px;
 }
 .botaovisivel{
+  float: right;
   background-color: rgba(17, 21, 77, 0.4);
   border: 1px solid  rgba(17, 21, 77, 0.4);
   color: white;
@@ -196,6 +219,11 @@ table#tableResultadoPesquisa th{
   background-color: #003870;
   color: white;
 }
+div#resultadoPesquisa{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 130px;
+}
 
 table#dadosTable{
   padding: 10px;
@@ -212,4 +240,26 @@ table#dadosTable tr:nth-child(even) {
   /*linhas ímpares da tabela*/
   background-color: #cadcff;
 }
+td#tdbutton{
+  text-align: center;
+}
+#selecionarButton{
+  width: 50px;
+  text-align: center;
+}
 
+.inapto{
+  color: red;
+  font-weight: bold;
+  font-size: 24pt;
+}
+.apto{
+  color: green;
+  font-weight: bold;
+  font-size: 24pt;
+}
+
+div#containermsg-cadastro-policiais{
+  position: absolute;
+  margin: auto;
+}

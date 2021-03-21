@@ -10,23 +10,37 @@
 
 <body>
   <% include ./partials/cabecalho %>
-        
-  <img src="images/BrasaoPMMS.jpg" id="brasao-pm-img" />
-  <h1>Planilha TAF PMMS</h1>
-  
-  <% if(success_msg != '' || error_msg != '' || error != ''){ %>           
-    <div id="divmensagens" class="divvisivel">
-      <%= error %> 
-      <%= success_msg %> 
-      <%= error_msg %>
-      <script>
-      setTimeout(function(){
-        $('div.divvisivel').fadeOut(3000);
-      }, 3000)
-       </script>
-      <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
-    </div>
-    <% } %>
+  <div id="containermsg-cadastro-policiais">
+      <% if(typeof dados != 'undefined') { %> 
+        <% if(typeof dados.errors != 'undefined'){ %>
+          <div id="divmensagens" class="divvisivel">
+            <% dados.errors.forEach(function(error) { %>  
+            <%= error.msg %>
+            <% }); %>
+              <script>
+              setTimeout(function(){
+                $('div.divvisivel').fadeOut(3000);
+              }, 3000)
+               </script>
+              <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
+            </div>
+       <% }} %>
+    
+      <% if(success_msg != '' || error_msg != '' || error != ''){ %>           
+        <div id="divmensagens" class="divvisivel">
+          <%= error %> 
+          <%= success_msg %> 
+          <%= error_msg %>
+          <script>
+          setTimeout(function(){
+            $('div.divvisivel').fadeOut(3000);
+          }, 3000)
+           </script>
+          <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
+        </div>
+        <% } %>
+  </div>        
+  <h1>Planilha TAF PMMS</h1>  
 
   <section>
     <h1>Cadastro de policiais para o sistema Planilha TAF PMMS</h1>
@@ -34,27 +48,27 @@
       <br />
       <label for="matriculaInput">Matricula: </label>
       <input type="number" name="matriculaInput" id="matriculaInput"
-        value="<%= (typeof matriculaInput != 'undefined')? matriculaInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.matriculaInput : '' %>" />
       <br />
       <label for="postogradInput"> Posto ou graduação: </label>
       <input type="text" name="postogradInput" id="postogradInput"
-        value="<%= (typeof postogradInput != 'undefined')? postogradInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.postogradInput : '' %>" />
       <br />
       <label for="nomecompletoInput">Nome completo:</label>
       <input type="text" name="nomecompletoInput" id="nomecompletoInput"
-        value="<%= (typeof nomecompletoInput != 'undefined')? nomecompletoInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.nomecompletoInput : '' %>" />
       <br />
       <label for="nomedeguerraInput">Nome de guerra:</label>
       <input type="text" name="nomedeguerraInput" id="nomedeguerraInput"
-        value="<%= (typeof nomedeguerraInput != 'undefined')? nomedeguerraInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.nomedeguerraInput : '' %>" />
         <br />
       <label for="unidadeInput">Unidade:</label>
       <input type="text" name="unidadeInput" id="unidadeInput"
-        value="<%= (typeof unidadeInput != 'undefined')? unidadeInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.unidadeInput : '' %>" />
       <br />
       <label for="unidadeInput">Data de nascimento:</label>
       <input type="date" name="dataNascInput" id="dataNascInput"
-        value="<%= (typeof dataNascInput != 'undefined')? dataNascInput : '' %>" />
+        value="<%= (typeof dados != 'undefined')? dados.dataNascInput : '' %>" />
       <br />
       <fieldset>
         <legend>Sexo</legend>

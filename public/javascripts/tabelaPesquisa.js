@@ -20,7 +20,7 @@ $(document).ready(function(){
     $("#tableResultadoPesquisa tbody tr").on("click", function(){
         var tdsdarow = $(this).children("td");
         //tdsdaRow é um componente html, pra pegar o conteudo preciso fazer innerText
-        var colunamatricula = tdsdarow[0].innerText;
+        var colunamatricula = tdsdarow[1].innerText; //coluna da matricula é a segunda coluna, portanto, índice 1
         var data = {};
         data.matricula = colunamatricula;
         $.ajax({
@@ -34,7 +34,7 @@ $(document).ready(function(){
                 document.getElementById("divdosdados").setAttribute("class", "");
                 document.getElementById("nomespan").innerText = umpolicial.postograd + " " + umpolicial.nomedeguerra;
                 document.getElementById("matriculaspan").innerText = umpolicial.matricula;
-                document.getElementById("matriculaHiddenInput").value = umpolicial.matricula;
+                document.getElementById("unidadespan").innerText = umpolicial.unidade;
                 document.getElementById("idadespan").innerText = umpolicial.idade;
                 document.getElementById("sexospan").innerText = umpolicial.sexo;
                 if(umpolicial.sexo=='feminino'){
@@ -60,7 +60,13 @@ $(document).ready(function(){
                         $('#rowDasBarras').show();
                     }
                 }
-
+                var mes = new Date().getMonth();
+                if(mes<7) { 
+                    document.getElementById("1sem").setAttribute("selected", true);
+                }
+                else {                  
+                    document.getElementById("2sem").setAttribute("selected", true);
+                }
                 
             }
         });
@@ -71,14 +77,14 @@ $(document).ready(function(){
         $("#barraRadioButton").on("click", function(){
             $(".tdbarra").show();            
             $(".tdflexao").hide();
-            $("#qtdFlexaoOpcao").val('');
-            $("#pontFlexaoMascInput").val('');
+            $("#qtdFlexaoOpcao").val("");
+            $("#pontFlexaoMascInput").val("");
         });
         $("#flexaoRadioButton").on("click", function(){
             $(".tdflexao").show();
             $(".tdbarra").hide();
-            $("#qtdBarrasOpcao").val('');
-            $("#pontBarraDosVeioInput").val('');
+            $("#qtdBarrasOpcao").val("");
+            $("#pontBarraDosVeioInput").val("");
         });
       
 });

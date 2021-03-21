@@ -1,12 +1,21 @@
 var express = require("express");
 var router = express.Router();
 var Usuario = require("../models/Usuario");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { ensureAuthenticated } = require("../config/auth");
 
 /* GET users listing. */
 router.get("/", ensureAuthenticated, function (req, res, next) {
-  res.render('usuarios');
+  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário =>{
+    var estrutura = {
+      cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
+      unidade: um_usuário.unidade,
+      perfil: um_usuário.perfil},
+      mensagem: {},
+      dados: undefined
+  };
+    res.render('usuarios', estrutura);
+  });
 });
 
 //programação para quando alguem vai se registrar:
