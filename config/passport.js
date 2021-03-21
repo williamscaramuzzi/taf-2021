@@ -1,7 +1,7 @@
 //aqui dentro criaremos nossa estrategia de login
 
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 //carregar o nosso modelo de User
 const Usuario = require("../models/Usuario");
