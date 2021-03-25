@@ -23,17 +23,7 @@
                 <input type="submit" value="Pesquisar" id="pesquisarButton">
             </form>
 
-            <% if(success_msg != '' || error_msg != '' || error != ''){ %>
-            <div id="divmensagens" class="divvisivel">
-                <%= error %> <%= success_msg %> <%= error_msg %>
-                <script>
-                    setTimeout(function () {
-                        $('div.divvisivel').fadeOut(3000);
-                    }, 3000)
-                </script>
-                <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>
-            </div>
-            <% } %>
+            
             <% if(typeof dados!='undefined') { %>
                 <div id="resultadoPesquisa" class="">
                     <table id="tableResultadoPesquisa">
@@ -144,8 +134,23 @@
             </div>
         </section>
     </div>
+    
     <footer id="rodape">
-
+        <% if(error_msg != ""){ %>   
+            <!--o passport só trabalha com mensagem tipo error, não trabalha com as mensagens do connect-flash-->
+            <!--o connect flash usa success_msg e error_msg, e é bom usar ele quando passamos de uma página para outra com res.redirect-->
+          <div id="divmensagens" class="divvisivel">
+              <button id="botaomensagens" class="botaovisivel" onclick="fecharDiv()">X</button>   
+            <%= error_msg %> 
+            <script>
+            setTimeout(function(){
+              $('div.divvisivel').fadeOut(3000);
+            }, 3000)
+             </script>        
+          </div>
+          <% } %>
+          
+         
     </footer>
 </body>
 <script>

@@ -59,21 +59,25 @@ input#botaoEntrar {
 
 header#cabecalho {
   color: black;
+  /* border: 1px dashed red; */
   background-color: #37476A;
+  background-image: url("../images/logotipo.png");
+  background-repeat: no-repeat;
   box-shadow: 1px 1px 2px black;
   margin: -8px -8px auto -10px;
-  height: 100px;
+  height: 140px;
 }
 nav {
-  /*border: 1px dashed red;*/
-  margin-left: 20px;
-  height: fit-content;
-  padding: 0px;
-  width: fit-content;
-  padding: 5px;
+  /* border: 1px dashed red; */
+  margin-top: 110px;
+  height: 30px;
+  width: 100%;
+  position: absolute;
   float: left;
+  background-color: rgb(215, 222, 243);
 }
 div#userdata {
+  /* border: 1px dashed red; */
   color: white;
   width: 400px;
   text-align: right;
@@ -85,41 +89,34 @@ div#userdata {
 }
 
 ul#menuList {
-  padding: 10px;
-  width: 500px;
-  display: flex;
-  position: absolute;
-  list-style: none;
+  /* border: 1px dashed white; */
+  margin-top: 1px;
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 8pt;
   color: white;
-  padding: 5px;
-  margin-top: 30px;
-  margin-bottom: 0px;
 }
 li{
-  display: block;  
-  padding: 10px;
-  background-color: #034485;
+  display: inline-block;  
+  padding: 5px;
+  margin: 2px 2px 2px 2px;
+  background-color: #1c5ea0;
   box-shadow: 1px 1px 1px black;
-  margin: 3px;
-  position: relative;
 }
 li.primeiro{
   width: 150px;
   text-align: center;
 }
 ul.dropdown-menu{
-  margin-top: 10px;
-  display: none;
+  margin-top: 2px;
+  margin-left: -5px;
   visibility: hidden;
   transition: all 0.5s ease;
   position: absolute;
-  list-style: none;
-  padding: 0px;
-  background-color: #034485;
+  list-style: block;
+  padding: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 2px 2px 5px black;
 }
 ul li:hover > ul,
@@ -206,17 +203,17 @@ table#quadro-login-table td, table#quadro-login-table th {
   background-color: #e4f1ff;
 }
 table#tableResultadoPesquisa{
-  background-color: #cecece;
+  background-color: #8A99BF;
   width: 790px;
 }
 
 table#tableResultadoPesquisa tr:nth-child(odd) {
   /*linhas ímpares da tabela*/
-  background-color: #797979;
+  background-color: #aec5f0;
 }
 
 table#tableResultadoPesquisa th{
-  background-color: #003870;
+  background-color: #3a76b3;
   color: white;
 }
 div#resultadoPesquisa{
@@ -262,4 +259,10 @@ td#tdbutton{
 div#containermsg-cadastro-policiais{
   position: absolute;
   margin: auto;
+}
+div#quadroFormCadastro{
+	background-color: rgba(151, 213, 254, 0.9);
+	width: 600px;
+	border-radius: 5px;
+	box-shadow: 4px 4px 4px black;
 }

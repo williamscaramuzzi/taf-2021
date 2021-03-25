@@ -6,17 +6,14 @@ const { ensureAuthenticated } = require("../config/auth");
 
 /* GET users listing. */
 router.get("/", ensureAuthenticated, function (req, res, next) {
-  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário =>{
-    var estrutura = {
-      cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
-      unidade: um_usuário.unidade,
-      perfil: um_usuário.perfil},
-      mensagem: {},
-      dados: undefined
-  };
-    res.render('usuarios', estrutura);
+  var estrutura = {
+    cabecalho: {nome: req.user.postograd + " " + req.user.nomedeguerra,
+    unidade: req.user.unidade,
+    perfil: req.user.perfil},
+    mensagem: {},
+    dados: undefined}
+    res.render("usuarios", estrutura);
   });
-});
 
 //programação para quando alguem vai se registrar:
 router.post("/", function (req, res, next) {
@@ -66,14 +63,13 @@ router.post("/", function (req, res, next) {
     //então eu mando o vetor pra serem mostradas as mensagens
     //é conveniente mandar tambem os dados digitados, porque o res.render recarregará a página com as mensagens
     //e o formulário ficará em branco tudo de novo
-    res.render("usuarios", {
-      errors,
-      matriculaInput,
-      postogradInput,
-      nomecompletoInput,
-      nomedeguerraInput,
-      unidadeInput
+    let todososerros;
+    errors.forEach(function juntaTodosOsErros(element, index, array) {
+      todososerros = todososerros + element.msg.toString();
     });
+    console.log(todososerros);
+    req.flash('error_msg', todososerros);
+    res.redirect("usuarios");
     //nao preciso passar as senhas nem o perfil, porque pra mim é interessante deixá-los em branco pro usuario digitar de novo
   } else {
     Usuario.findOne({ where: { matricula: matriculaInput } }).then(rows => {

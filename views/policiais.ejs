@@ -40,48 +40,85 @@
         </div>
         <% } %>
   </div>        
-  <h1>Planilha TAF PMMS</h1>  
 
-  <section>
-    <h1>Cadastro de policiais para o sistema Planilha TAF PMMS</h1>
+  <div id="quadroFormCadastro">
+    <h1>Cadastro de policiais da Unidade</h1>
     <form method="POST">
-      <br />
-      <label for="matriculaInput">Matricula: </label>
-      <input type="number" name="matriculaInput" id="matriculaInput"
-        value="<%= (typeof dados != 'undefined')? dados.matriculaInput : '' %>" />
-      <br />
-      <label for="postogradInput"> Posto ou graduação: </label>
-      <input type="text" name="postogradInput" id="postogradInput"
-        value="<%= (typeof dados != 'undefined')? dados.postogradInput : '' %>" />
-      <br />
-      <label for="nomecompletoInput">Nome completo:</label>
-      <input type="text" name="nomecompletoInput" id="nomecompletoInput"
-        value="<%= (typeof dados != 'undefined')? dados.nomecompletoInput : '' %>" />
-      <br />
-      <label for="nomedeguerraInput">Nome de guerra:</label>
-      <input type="text" name="nomedeguerraInput" id="nomedeguerraInput"
-        value="<%= (typeof dados != 'undefined')? dados.nomedeguerraInput : '' %>" />
-        <br />
-      <label for="unidadeInput">Unidade:</label>
-      <input type="text" name="unidadeInput" id="unidadeInput"
-        value="<%= (typeof dados != 'undefined')? dados.unidadeInput : '' %>" />
-      <br />
-      <label for="unidadeInput">Data de nascimento:</label>
-      <input type="date" name="dataNascInput" id="dataNascInput"
-        value="<%= (typeof dados != 'undefined')? dados.dataNascInput : '' %>" />
-      <br />
-      <fieldset>
-        <legend>Sexo</legend>
-        <input type="radio" name="sexoRadioButton" id="mascRadioButton" value="masculino" /> <label
-            for="mascRadioButton">Masculino</label>
-        <input type="radio" name="sexoRadioButton" id="femRadioButton" value="feminino" /> <label
-            for="femRadioButton">Feminino</label>
-    </fieldset>
-      <br />
-      <input type="submit" value="Cadastrar" name="cadastrarButton" id="cadastrarButton" />
+      <table>
+        <tr>
+          <td>
+            <label for="matriculaInput">Matricula: </label>
+          </td>
+          <td>
+            <input type="number" name="matriculaInput" id="matriculaInput"
+            value="<%= (typeof dados != 'undefined')? dados.matriculaInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="postogradInput"> Posto ou graduação: </label>
+          </td>
+          <td>
+            <input type="text" name="postogradInput" id="postogradInput"
+            value="<%= (typeof dados != 'undefined')? dados.postogradInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="nomecompletoInput">Nome completo:</label>
+          </td>
+          <td>
+            <input type="text" name="nomecompletoInput" id="nomecompletoInput"
+            value="<%= (typeof dados != 'undefined')? dados.nomecompletoInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="nomedeguerraInput">Nome de guerra:</label>
+          </td>
+          <td>
+            <input type="text" name="nomedeguerraInput" id="nomedeguerraInput"
+            value="<%= (typeof dados != 'undefined')? dados.nomedeguerraInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="unidadeInput">Unidade:</label>
+          </td>
+          <td>
+            <input type="text" name="unidadeInput" id="unidadeInput"
+            value="<%= (typeof dados != 'undefined')? dados.unidadeInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="unidadeInput">Data de nascimento:</label>
+          </td>
+          <td>
+            <input type="date" name="dataNascInput" id="dataNascInput"
+            value="<%= (typeof dados != 'undefined')? dados.dataNascInput : '' %>" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Sexo</legend>
+              <input type="radio" name="sexoRadioButton" id="mascRadioButton" value="masculino" /> <label
+                  for="mascRadioButton">Masculino</label>
+              <input type="radio" name="sexoRadioButton" id="femRadioButton" value="feminino" /> <label
+                  for="femRadioButton">Feminino</label>
+          </fieldset>
+          </td>
+        </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Cadastrar" name="cadastrarButton" id="cadastrarButton" />
+        </td>
+      </tr>
+      
     </form>
     
-  </section>
+  </div>
 </body>
 <script>
     function fecharDiv() { 

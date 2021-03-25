@@ -10,8 +10,8 @@ $(document).ready(function(){
         var tdsdarow = $(this).children("td");
         //tdsdaRow é um componente html, pra pegar o conteudo preciso fazer innerText
         var colunamatricula = tdsdarow[0].innerText;
-        var data = {};
-        data.matricula = colunamatricula;
+        var data = {}; //Json chamado "data" (dados em inglês), é o JSON que será enviado no ajax para /home/pesquisa
+        data.matricula = colunamatricula; //esse data.matricula será acessível depois lá no routes de home/pesquisa, estará anexado ao req.body com o nome req.body.matricula
         $.ajax({
             url: '/home/pesquisa',
             method: 'POST',

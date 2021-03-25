@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>TAF PMMS</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/stylesheets/estilo.css" />
+    <script src="/javascripts/jquery-3.4.1.js"></script>
+    <script src="/javascripts/tabelaPesquisa.js"></script>
+    <script src="/javascripts/calculadora.js"></script>
+</head>
+
+<body>
+    <% include ./partials/cabecalho %>
+    <br/>
+    <table id="tableResultadoPesquisa">
+        <tr>
+            <th>Ano</th>
+            <th>Semestre</th>
+            <th>Unidade</th>
+            <th>Matrícula</th>
+            <th>Idade</th>
+            <th>Barras</th>
+            <th>Pontos (barras)</th>
+            <th>Flexões</th>
+            <th>Pontos (flexões)</th>
+            <th>Abdominais (Carl-up)</th>
+            <th>Pontos (abs carl)</th>
+            <th>Abdominais (remador)</th>
+            <th>Pontos (abs rem)</th>
+            <th>Corrida (metros)</th>
+            <th>Pontos (corrida)</th>
+            <th>Pontuação total</th>
+            <th>Parecer</th>
+        </tr>
+        <% for(var entrada of dados){ %>
+        <tr>
+            <td><%=entrada.ano%></td>
+            <td><%=entrada.semestre%></td>
+            <td><%=entrada.unidade%></td>
+            <td><%=entrada.matricula%></td>
+            <td><%=entrada.idade%></td>
+            <% if(entrada.qtdbarras==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.qtdbarras%></td>
+                <% } %>
+            <% if(entrada.pontbarras==null) {%>
+                    <td>--</td>
+                <% }else { %>
+                    <td><%=entrada.pontbarras%></td>
+            <% } %>
+            <% if(entrada.qtdflexao==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.qtdflexao%></td>
+                <% } %>
+            <% if(entrada.pontflexao==null) {%>
+                    <td>--</td>
+                <% }else { %>
+                    <td><%=entrada.pontflexao%></td>
+            <% } %>
+            <% if(entrada.qtdabdomcarl==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.qtdabdomcarl%></td>
+            <% } %>
+            <% if(entrada.pontabdocarl==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.pontabdocarl%></td>
+            <% } %>
+            <% if(entrada.qtdabdorem==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.qtdabdorem%></td>
+            <% } %>
+            <% if(entrada.pontabdorem==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.pontabdorem%></td>
+            <% } %>
+            <% if(entrada.qtdcorrida==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.qtdcorrida%></td>
+            <% } %>
+            <% if(entrada.pontcorrida==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.pontcorrida%></td>
+            <% } %>
+            <% if(entrada.total==null) {%>
+                <td>--</td>
+            <% }else { %>
+                <td><%=entrada.total%></td>
+            <% } %>
+            <% if(entrada.parecer=="APTO") { %>
+                <td class="apto"><%= entrada.parecer%></td>
+            <% } else { %>
+                <td class="inapto"><%= entrada.parecer%></td>
+            <% } %>
+        <% } %>
+    </table>
+</body>
+<footer id="rodape">
+
+</footer>
+</html>

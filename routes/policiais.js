@@ -5,16 +5,13 @@ const { ensureAuthenticated } = require("../config/auth");
 var Usuario = require("../models/Usuario");
 
 router.get("/", ensureAuthenticated, function (req, res, next) {
-  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário =>{
-    var estrutura = {
-      cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
-      unidade: um_usuário.unidade,
-      perfil: um_usuário.perfil},
-      mensagem: {},
-      dados: undefined
-  };
+  var estrutura = {
+    cabecalho: {nome: req.user.postograd + " " + req.user.nomedeguerra,
+    unidade: req.user.unidade,
+    perfil: req.user.perfil},
+    mensagem: {},
+    dados: undefined}
     res.render('policiais', estrutura);
-  });
 });
 
 //logout handle

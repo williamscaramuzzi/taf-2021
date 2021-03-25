@@ -1,4 +1,9 @@
 <header id="cabecalho">
+    <div id="userdata">
+        Usuário: <%= cabecalho.nome %> <br>
+        Unidade: <%= cabecalho.unidade %> <br>
+        Perfil: <%= cabecalho.perfil %>
+    </div>
         <nav>
             <ul id="menuList">
                 <li class="primeiro">
@@ -9,15 +14,11 @@
                             <li><a href="/policiais">Cadastro de Policiais</a></li>
                     </ul>
                 </li>
-                <li><a href="/home">Ver tabela geral</a></li>
+                <li><a href="/tabelageral">Ver tabela geral</a></li>
                 <li><a href="/home/logout">Logout</a></li>
             </ul>
         </nav>
         
-        <div id="userdata">
-            Usuário: <%= cabecalho.nome %> <br>
-            Unidade: <%= cabecalho.unidade %> <br>
-            Perfil: <%= cabecalho.perfil %>
-        </div>
+        
     </header>
     

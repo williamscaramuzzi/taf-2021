@@ -7,7 +7,6 @@ const bcrypt = require("bcryptjs");
 const Usuario = require("../models/Usuario");
 
 module.exports = function (passport) {
-  console.log('passport.use');
   passport.use(
     new LocalStrategy(
       {
@@ -16,7 +15,7 @@ module.exports = function (passport) {
         passwordField: "senha"
       },
       (matricula, password, done) => {
-        console.log('tentando findOne:');
+        console.log('tentando findOne:' + matricula);
         //ver se tem um usuario no BD que matches o user informado
         Usuario.findOne({ where: { matricula: matricula } })
           .then(user => {
@@ -27,6 +26,7 @@ module.exports = function (passport) {
               });
             }
             console.log('User.findOne achou um user, vamos ver agora se o password bate');
+            console.log(user.postograd + " " + user.nomedeguerra);
             //ver se o password é igual, temos que decryptar o password que ta guardado no BD pra comparar com o digitado
             bcrypt.compare(password, user.senha, (err, isMatch) => {
               if (err) throw err;
@@ -49,10 +49,13 @@ module.exports = function (passport) {
   //num app que tem login, você só mexe com as credenciais do usuario
   //na hora de logar. Quando o usuario loga, uma sessão será estabelecida
   //e mantida via cookie no browser do usuario
-  //Visando manter Login Sessions, o framework Passport vai serializer e deserializar instancias do User para a Session
+  //a função serializeUser recebe o usuário criado na LocalStrategy para simplesmente salvar no cookie a id do usuário (no caso desse sistema, a matrícula do policial)
   passport.serializeUser((user, done) => {
-    done(null, user.matricula);
+    done(null, user.matricula); //salva no cookie do client side
   });
+
+  //já a função deserializeUser pega o id de usuario, consulta o banco pra pegar o objeto Usuário inteiro, 
+  //e através da função done ele "anexa" o objeto user em req, sendo que nós podemos usar req.user em qualquer rota após isso
   passport.deserializeUser((matricula, done) => {
     console.log('entrou no deserialize');
     Usuario.findOne({ where: { matricula: matricula } }).then(user => {

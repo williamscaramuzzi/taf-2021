@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable quotes */
 /* eslint-disable linebreak-style */
 var express = require('express');
@@ -10,13 +11,13 @@ var Entrada = require("../models/Entrada");
 var Usuario = require("../models/Usuario");
 
 router.get("/", ensureAuthenticated, function (req, res, next) {
-  Usuario.findOne({ where: { matricula: req.session.passport.user } }).then(um_usuário => {
+  {
     const { nomeMat } = req.query;
     var estrutura = {
-      cabecalho: {nome: um_usuário.postograd + " " + um_usuário.nomedeguerra,
-      unidade: um_usuário.unidade,
-      perfil: um_usuário.perfil},
-      mensagem: {},
+      cabecalho: {nome: req.user.postograd + " " + req.user.nomedeguerra,
+      unidade: req.user.unidade,
+      perfil: req.user.perfil},
+      error_msg: "",
       dados: undefined
   };
     if (nomeMat) {
@@ -26,12 +27,12 @@ router.get("/", ensureAuthenticated, function (req, res, next) {
         var bizudopercent = "%" + nomeMat + "%";
         //o símbolo % antes e depois do nome vai dizer ao sql que esse nome pode ter cadeias de caracteres antes e depois dele.. pode ser nome do meio, primeiro nome, sobrenome, etc
         var clausula_where = { where: { nomecompleto: { [Op.like]: bizudopercent } } }
-        if (um_usuário.perfil != "master") {
+        if (req.user.perfil != "Master") {
           console.log("perfil do usuario é diferente de master, consulta será somente para policiais de sua unidade");
           //se o usuário nao tem perfil master, poderá ver resultados somente de sua unidade, entao eu tenho que filtrar a consulta de policiais, pela UNIDADE
           clausula_where = {
             where: {
-              unidade: um_usuário.unidade,
+              unidade: req.user.unidade,
               nomecompleto: { [Op.like]: bizudopercent }
             }
           };
@@ -40,8 +41,7 @@ router.get("/", ensureAuthenticated, function (req, res, next) {
         Policial.findAll(clausula_where).then(rows => {
           if (!rows[0]) {
             console.log("não achou nenhum policial com os nomes informados");
-            
-            estrutura.mensagem = { error_msg: "Policial não encontrado" };
+            estrutura.error_msg = "Nenhum policial encontrado";
             res.render('home', estrutura);
           }
           else {
@@ -53,7 +53,7 @@ router.get("/", ensureAuthenticated, function (req, res, next) {
         //se entrar aqui, é porque nomeMat é possível de converter pra number
         Policial.findAll({ where: { matricula: parseInt(nomeMat) } }).then(rows => {
           if (!rows[0]) {
-            estrutura.mensagem = { error_msg: "Policial não encontrado" };
+            estrutura.error_msg = "Matrícula não encontrada";
             res.render('home', estrutura);
           } else { 
             estrutura.dados = rows;
@@ -61,12 +61,14 @@ router.get("/", ensureAuthenticated, function (req, res, next) {
            }
         });}
         } else {
-          console.log("nomeMat está vazio, renderizando apenas a home inicial");
+          
           res.render('home', estrutura);
-        }});
+        }}
 });
 
-// Abaixo é o post AJAX para pesquisar nomes
+// Abaixo é o post AJAX que recebe o seguinte:
+//eu pesquiso um nome ou matricula.... a tabela mostra varios resultados..
+//eu seleciono um policial e, via AJAX, esse post aqui de baixo recebe a matricula de quem eu selecionei
 router.post("/pesquisa", ensureAuthenticated, function (req, res, next) {
   const mat = req.body.matricula;
   console.log("parametros sao: ", mat);
