@@ -73,8 +73,7 @@ router.post("/pesquisa", ensureAuthenticated, function (req, res, next) {
   const mat = req.body.matricula;
   console.log("parametros sao: ", mat);
   Policial.findOne({ where: { matricula: parseInt(mat) } }).then(umpolicial => {
-    console.log("findOne à partir da tabbleResultadoPesquisa, deu isso aqui:");
-    console.log(umpolicial);
+    
     var diff_ms = Date.now() - new Date(umpolicial.datadenascimento);
     var age_dt = new Date(diff_ms);
     umpolicial.idade = Math.abs(age_dt.getUTCFullYear() - 1970);
@@ -89,6 +88,8 @@ router.post("/", ensureAuthenticated, function (req, res, next) {
   entrada.semestre = req.body.semestre;
   entrada.unidade = req.body.unidade;
   entrada.matricula = req.body.matricula;
+  entrada.nome = req.body.nome;
+  entrada.sexo = req.body.sexo;
   entrada.idade = req.body.idade;
   entrada.qtdcorrida = req.body.qtdCorrida;
   entrada.pontcorrida = req.body.pontCorridaInput;
@@ -108,8 +109,8 @@ router.post("/", ensureAuthenticated, function (req, res, next) {
     entrada.pontflexao = req.body.pontFlexaoMascInput;
   } else {
     //se entrar aqui, é velho e fez barra somente!
-    entrada.qtdflexao = req.body.qtdBarrasOpcao;
-    entrada.pontflexao = req.body.pontBarraDosVeioInput;
+    entrada.qtdbarras = req.body.qtdBarrasOpcao;
+    entrada.pontbarras = req.body.pontBarraDosVeioInput;
   }
   if (req.body.opcaoAbdominalRadio == 'carlup') {
     entrada.qtdabdomcarl = req.body.qtdAbs;

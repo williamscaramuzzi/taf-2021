@@ -203,13 +203,17 @@ table#quadro-login-table td, table#quadro-login-table th {
   background-color: #e4f1ff;
 }
 table#tableResultadoPesquisa{
-  background-color: #8A99BF;
+  background-color: #ffffff;
   width: 790px;
 }
 
 table#tableResultadoPesquisa tr:nth-child(odd) {
   /*linhas ímpares da tabela*/
-  background-color: #aec5f0;
+  background-color: #EEF8F9;
+}
+table#tableResultadoPesquisa tr:nth-child(even) {
+  /*linhas pares da tabela*/
+  background-color: #dadada;
 }
 
 table#tableResultadoPesquisa th{
@@ -219,7 +223,13 @@ table#tableResultadoPesquisa th{
 div#resultadoPesquisa{
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: 130px;
+  max-height: 300px;
+}
+div#divDaPlanilhaGeral{
+  overflow-y: scroll;
+  width: fit-content;
+  max-height: 400px;
+  padding: 5px;
 }
 
 table#dadosTable{
@@ -263,6 +273,14 @@ div#containermsg-cadastro-policiais{
 div#quadroFormCadastro{
 	background-color: rgba(151, 213, 254, 0.9);
 	width: 600px;
+	border-radius: 5px;
+	box-shadow: 4px 4px 4px black;
+}
+
+div#divDaConsultaDaTabelaGeral{
+  background-color: rgba(151, 213, 254, 0.9);
+  padding: 10px;
+	width: fit-content;
 	border-radius: 5px;
 	box-shadow: 4px 4px 4px black;
 }

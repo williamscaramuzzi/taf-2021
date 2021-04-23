@@ -9,99 +9,139 @@
     <script src="/javascripts/tabelaPesquisa.js"></script>
     <script src="/javascripts/calculadora.js"></script>
 </head>
-
+<% include ./partials/cabecalho %>
 <body>
-    <% include ./partials/cabecalho %>
+    
     <br/>
-    <table id="tableResultadoPesquisa">
-        <tr>
-            <th>Ano</th>
-            <th>Semestre</th>
-            <th>Unidade</th>
-            <th>Matrícula</th>
-            <th>Idade</th>
-            <th>Barras</th>
-            <th>Pontos (barras)</th>
-            <th>Flexões</th>
-            <th>Pontos (flexões)</th>
-            <th>Abdominais (Carl-up)</th>
-            <th>Pontos (abs carl)</th>
-            <th>Abdominais (remador)</th>
-            <th>Pontos (abs rem)</th>
-            <th>Corrida (metros)</th>
-            <th>Pontos (corrida)</th>
-            <th>Pontuação total</th>
-            <th>Parecer</th>
-        </tr>
-        <% for(var entrada of dados){ %>
-        <tr>
-            <td><%=entrada.ano%></td>
-            <td><%=entrada.semestre%></td>
-            <td><%=entrada.unidade%></td>
-            <td><%=entrada.matricula%></td>
-            <td><%=entrada.idade%></td>
-            <% if(entrada.qtdbarras==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.qtdbarras%></td>
-                <% } %>
-            <% if(entrada.pontbarras==null) {%>
-                    <td>--</td>
-                <% }else { %>
-                    <td><%=entrada.pontbarras%></td>
+    <div id="divDaConsultaDaTabelaGeral">
+        Selecione filtros para a consulta:
+        <form action="" method="get" name="formConsultaTabelaGeral" id="formConsultaTabelaGeral">
+            <table name="tableConsultaTabelaGeral" id="tableConsultaTabelaGeral">
+                <tr>
+                    <td><label for="anoDropDown">Ano:</label></td>
+                    <td><select name="listaAno" id="listaAno">
+                        <option value="todos">Todos</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label for="semestre">Semestre:</label></td>
+                    <td><select name="listaSemestre" id="listaSemestre">
+                        <option value="todos">Todos</option>
+                        <option value="1ºsemestre">1º semestre</option>
+                        <option value="2ºsemestre">2º semestre</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Sexo:</td>
+                    <td><select name="listaSexo" id="listaSexo">
+                        <option value="ambos">Ambos</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select</td>
+                </tr>
+                <tr><td><button type="submit">Pesquisar</button></td></tr>
+            </table>
+        </form>
+    </div>
+    <div id="divDaPlanilhaGeral">
+        <table id="tableResultadoPesquisa">
+            <% if(dados!=undefined){ %>
+                <tr>
+                    <th>Ano</th>
+                    <th>Semestre</th>
+                    <th>Unidade</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Sexo</th>
+                    <th>Barras</th>
+                    <th>Pontos (barras)</th>
+                    <th>Flexões</th>
+                    <th>Pontos (flexões)</th>
+                    <th>Abdominais (Carl-up)</th>
+                    <th>Pontos (abs carl)</th>
+                    <th>Abdominais (remador)</th>
+                    <th>Pontos (abs rem)</th>
+                    <th>Corrida (metros)</th>
+                    <th>Pontos (corrida)</th>
+                    <th>Pontuação total</th>
+                    <th>Parecer</th>
+                </tr>
+                <% for(var entrada of dados){ %>
+                <tr>
+                    <td><%=entrada.ano%></td>
+                    <td><%=entrada.semestre%></td>
+                    <td><%=entrada.unidade%></td>
+                    <td><%=entrada.matricula%></td>
+                    <td><%=entrada.nome%></td>
+                    <td><%=entrada.idade%></td>
+                    <td><%=entrada.sexo%></td>
+                    <% if(entrada.qtdbarras==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.qtdbarras%></td>
+                        <% } %>
+                    <% if(entrada.pontbarras==null) {%>
+                            <td>--</td>
+                        <% }else { %>
+                            <td><%=entrada.pontbarras%></td>
+                    <% } %>
+                    <% if(entrada.qtdflexao==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.qtdflexao%></td>
+                        <% } %>
+                    <% if(entrada.pontflexao==null) {%>
+                            <td>--</td>
+                        <% }else { %>
+                            <td><%=entrada.pontflexao%></td>
+                    <% } %>
+                    <% if(entrada.qtdabdomcarl==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.qtdabdomcarl%></td>
+                    <% } %>
+                    <% if(entrada.pontabdocarl==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.pontabdocarl%></td>
+                    <% } %>
+                    <% if(entrada.qtdabdorem==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.qtdabdorem%></td>
+                    <% } %>
+                    <% if(entrada.pontabdorem==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.pontabdorem%></td>
+                    <% } %>
+                    <% if(entrada.qtdcorrida==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.qtdcorrida%></td>
+                    <% } %>
+                    <% if(entrada.pontcorrida==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.pontcorrida%></td>
+                    <% } %>
+                    <% if(entrada.total==null) {%>
+                        <td>--</td>
+                    <% }else { %>
+                        <td><%=entrada.total%></td>
+                    <% } %>
+                    <% if(entrada.parecer=="APTO") { %>
+                        <td class="apto"><%= entrada.parecer%></td>
+                    <% } else { %>
+                        <td class="inapto"><%= entrada.parecer%></td>
+                    <% } %>
+                <% } %>    
             <% } %>
-            <% if(entrada.qtdflexao==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.qtdflexao%></td>
-                <% } %>
-            <% if(entrada.pontflexao==null) {%>
-                    <td>--</td>
-                <% }else { %>
-                    <td><%=entrada.pontflexao%></td>
-            <% } %>
-            <% if(entrada.qtdabdomcarl==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.qtdabdomcarl%></td>
-            <% } %>
-            <% if(entrada.pontabdocarl==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.pontabdocarl%></td>
-            <% } %>
-            <% if(entrada.qtdabdorem==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.qtdabdorem%></td>
-            <% } %>
-            <% if(entrada.pontabdorem==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.pontabdorem%></td>
-            <% } %>
-            <% if(entrada.qtdcorrida==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.qtdcorrida%></td>
-            <% } %>
-            <% if(entrada.pontcorrida==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.pontcorrida%></td>
-            <% } %>
-            <% if(entrada.total==null) {%>
-                <td>--</td>
-            <% }else { %>
-                <td><%=entrada.total%></td>
-            <% } %>
-            <% if(entrada.parecer=="APTO") { %>
-                <td class="apto"><%= entrada.parecer%></td>
-            <% } else { %>
-                <td class="inapto"><%= entrada.parecer%></td>
-            <% } %>
-        <% } %>
-    </table>
+            </table>
+    </div>
 </body>
 <footer id="rodape">
 

@@ -29,6 +29,14 @@ Entrada.init({
         allowNull: false,
         type: Sequelize.TINYINT,
     },
+    nome: {
+        allowNull: false,
+        type: Sequelize.STRING,
+    },
+    sexo: {
+        allowNull: false,
+        type: Sequelize.STRING,
+    },
     qtdbarras: {
         allowNull: true,
         type: Sequelize.TINYINT,
